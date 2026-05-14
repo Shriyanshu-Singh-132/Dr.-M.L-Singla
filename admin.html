@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Dr. M. L. Singla</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="admin-style.css">
+</head>
+<body class="admin-body">
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h2>Admin Panel</h2>
+        </div>
+        <ul class="sidebar-menu">
+            <li class="active" data-target="profile-sec"><i class="fa-solid fa-user-pen"></i> Edit Profile</li>
+            <li data-target="achievements-sec"><i class="fa-solid fa-trophy"></i> Achievements</li>
+            <li data-target="gallery-sec"><i class="fa-regular fa-images"></i> Gallery Images</li>
+            <li data-target="publications-sec"><i class="fa-solid fa-book-open"></i> Publications</li>
+            <li data-target="mail-sec"><i class="fa-solid fa-envelope-open-text"></i> Mail System</li>
+        </ul>
+        <div class="sidebar-footer">
+            <a href="login.html" class="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+            <a href="index.html" class="logout-btn" style="margin-top: 10px; color: #cbd5e1;"><i class="fa-solid fa-globe"></i> View Site</a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <header class="topbar">
+            <div class="topbar-left" style="display: flex; align-items: center; gap: 15px;">
+                <button id="admin-menu-toggle" class="admin-menu-toggle"><i class="fa-solid fa-bars"></i></button>
+                <h3 id="page-title">Edit Profile</h3>
+            </div>
+            <div class="user-info">
+                <span>Prof. Singla</span>
+                <div class="avatar"><i class="fa-solid fa-user"></i></div>
+            </div>
+        </header>
+
+        <div class="content-wrapper">
+            <!-- Profile Section -->
+            <section id="profile-sec" class="dashboard-section active">
+                <div class="card">
+                    <form class="admin-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Full Name</label>
+                                <input type="text" value="Dr. M. L. Singla">
+                            </div>
+                            <div class="form-group">
+                                <label>Designation</label>
+                                <input type="text" value="Professor (Retd.)">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Department Details</label>
+                            <textarea rows="3">Faculty of Management Studies (FMS)&#10;University of Delhi</textarea>
+                        </div>
+                        <button type="button" class="btn-save" onclick="showToast('Profile updated successfully!')">Save Changes</button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Achievements Section -->
+            <section id="achievements-sec" class="dashboard-section">
+                <div class="card">
+                    <form class="admin-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Achievement Title</label>
+                                <input type="text" placeholder="e.g. Best Researcher Award">
+                            </div>
+                            <div class="form-group">
+                                <label>Year</label>
+                                <input type="text" placeholder="e.g. 2023">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea rows="2" placeholder="Brief description of the achievement..."></textarea>
+                        </div>
+                        <button type="button" class="btn-save" onclick="showToast('Achievement added successfully!')"><i class="fa-solid fa-plus"></i> Add Achievement</button>
+                    </form>
+                </div>
+                
+                <h4 style="margin: 30px 0 15px; color: var(--primary-blue);">Current Achievements</h4>
+                <div class="table-container">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Year</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>IBM Faculty Award</td>
+                                <td>2008</td>
+                                <td><button class="btn-delete"><i class="fa-solid fa-trash"></i></button></td>
+                            </tr>
+                            <tr>
+                                <td>Head and Dean</td>
+                                <td>2014-2017</td>
+                                <td><button class="btn-delete"><i class="fa-solid fa-trash"></i></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Gallery Section -->
+            <section id="gallery-sec" class="dashboard-section">
+                <div class="card">
+                    <form class="admin-form">
+                        <div class="form-group">
+                            <label>Select Category</label>
+                            <select>
+                                <option>Conferences</option>
+                                <option>Awards</option>
+                                <option>Events</option>
+                                <option>Workshops</option>
+                            </select>
+                        </div>
+                        <div class="upload-area" onclick="document.getElementById('file-upload').click()">
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                            <p>Drag & Drop your images here or <span class="highlight-text">Browse</span></p>
+                            <input type="file" multiple hidden id="file-upload">
+                        </div>
+                        <button type="button" class="btn-save" style="margin-top: 15px;" onclick="showToast('Images uploaded to gallery!')">Upload Images</button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Publications Section -->
+            <section id="publications-sec" class="dashboard-section">
+                <div class="card">
+                    <form class="admin-form">
+                        <div class="form-group">
+                            <label>Paper Title</label>
+                            <input type="text" placeholder="Enter research paper title">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Journal / Conference Name</label>
+                                <input type="text" placeholder="e.g. IEEE Transactions">
+                            </div>
+                            <div class="form-group">
+                                <label>Link (URL)</label>
+                                <input type="url" placeholder="https://...">
+                            </div>
+                        </div>
+                        <button type="button" class="btn-save" onclick="showToast('Publication added!')"><i class="fa-solid fa-plus"></i> Add Publication</button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Mail System Section -->
+            <section id="mail-sec" class="dashboard-section">
+                <div class="card">
+                    <form class="admin-form" id="mail-form">
+                        <div class="form-group">
+                            <label>Select Students (Recipients)</label>
+                            <select multiple class="multi-select" id="students-select">
+                                <option value="all">All Students (Batch 2024)</option>
+                                <option value="cse_a">Section A Students</option>
+                                <option value="cse_b">Section B Students</option>
+                                <option value="phd">Ph.D Scholars</option>
+                                <option value="mca">MCA Students</option>
+                            </select>
+                            <small class="hint">Hold Ctrl (Windows) or Cmd (Mac) to select multiple groups.</small>
+                        </div>
+                        <div class="form-group">
+                            <label>Subject</label>
+                            <input type="text" placeholder="Enter email subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Message</label>
+                            <textarea rows="6" placeholder="Write your message here..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn-send"><i class="fa-regular fa-paper-plane"></i> Send Mail</button>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"><i class="fa-solid fa-circle-check"></i> <span id="toast-msg">Action completed!</span></div>
+
+    <script src="admin-script.js"></script>
+</body>
+</html>
